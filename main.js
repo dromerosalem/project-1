@@ -31,41 +31,52 @@ function setupGame(){
   //INVAERS MOVEMENT WHAT ARE NOT MOVING DOWN
   button.addEventListener('click',() => {
 
-    invaders.forEach((invader)=> {
-      cells[invader].classList.add('invader')
+    // 1) Have a single setInterval, that loops/foreeaches through invaders and moves them
+    // 2) When a rocket hits an invader, clear the interval, and remove that invader from the array
+    // 3) Start your interval again, with one less invader.
+
   
-      setInterval(() => {
+    setInterval(() => {
+
+      for (let i = 0; i < invaders.length; i++) {
         if (alienDirection === 'right') {
           
-          if (rightWall.includes(invader)) {
-           
-            cells[invader].classList.remove('invader')
-            invader += cellsXcells
-            cells[invader].classList.add('invader')
-            alienDirection = 'left' 
-            
-            
+          if (rightWall.includes(invaders[i])) {
+            for (let i = invaders.length - 1; i >= 0; i--) {
+              cells[invaders[i]].classList.remove('invader')
+              invaders[i] += cellsXcells
+              cells[invaders[i]].classList.add('invader')       
+            }
+            return alienDirection = 'left' 
           } else {
-            cells[invader].classList.remove('invader')
-            invader += invaderMove
-            cells[invader].classList.add('invader')
+            cells[invaders[i]].classList.remove('invader')
+            invaders[i] += invaderMove
+            cells[invaders[i]].classList.add('invader')
           }
-        } else if (alienDirection === 'left') {
-          if (leftWall.includes(invader)) {
-            cells[invader].classList.remove('invader')
-            invader += cellsXcells 
-            cells[invader].classList.add('invader')
-            alienDirection = 'right' 
-          } else {
-            cells[invader].classList.remove('invader')
-            invader -= invaderMove
-            cells[invader].classList.add('invader')
-          }
-        } 
+        } //else if (alienDirection === 'left') {
+        //   if (leftWall.includes(invaders[i])) {
+        //     for (let i = 0; i < invaders.length; i++) {
+        //       cells[invaders[i]].classList.remove('invader')
+              
+        //     }
+        //     for (let i = 0; i < invaders.length; i++) {
+        //       invaders[i] += cellsXcells 
+        //       cells[invaders[i]].classList.add('invader')
+        //     }
+            
+        //     alienDirection = 'right' 
+        //   } else {
+        //     cells[invaders[i]].classList.remove('invader')
+        //     invaders[i] -= invaderMove
+        //     cells[invaders[i]].classList.add('invader')
+        //   }
+        // } 
+      }
+      // cells[invader].classList.add('invader')    
   
-      }, 500)
-    })
+    }, 500)
   })
+
 
   cells[ship].classList.add('ship')
   //SHIP CODE
@@ -73,16 +84,27 @@ function setupGame(){
     
     // shoots = ship - cellsXcells
     // shoots = shoots - cellsXccells
+    const shootMove = true
 
     setInterval(() => {
-      if (shoots === 0) {
-        shoots = ship - cellsXcells
-        cells[shoots].classList.add('shoot')  
-      } else {
-        cells[shoots].classList.remove('shoot')
-        shoots = shoots - cellsXcells
-        cells[shoots].classList.add('shoot')  
-      }
+      // if (shootMove === true)
+        if (shoots === 0) {
+          shoots = ship - cellsXcells
+          cells[shoots].classList.add('shoot')  
+        } else  {
+          cells[shoots].classList.remove('shoot')
+          shoots = shoots - cellsXcells
+          cells[shoots].classList.add('shoot')  
+        }
+
+      invaders.forEach(invader => {
+        if (invader === shoots) {
+          console.log('hello evryone')
+          cells[shoots].classList.remove('shoot')
+          cells[invader].classList.remove('invader')
+        }
+      })
+      
       // if (cells.contains('invader') && cells.contains('shoot')){
       //   cells[shoots].classList.remove('shoot')
       //   cells[invaders].classList.remove('invader')
@@ -115,13 +137,7 @@ function setupGame(){
   })
 
 
-  //COLISION
-
-  if (shoots === invaders) {
-    console.log('hello evryone')
-    cells[shoots].classList.remove('shoot')
-    cells[invaders].classList.remove('invader')
-  }
+  
 }
 
 

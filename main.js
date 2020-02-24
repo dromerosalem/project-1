@@ -1,7 +1,10 @@
+
 function setupGame(){
 
   
   const cellsXcells = 20
+  let ship = 389
+  let shoots = 0
   const totalGrid = cellsXcells * cellsXcells
   const grid = document.querySelector('.grid')
   const cells = []
@@ -25,7 +28,7 @@ function setupGame(){
     
 
   }
-
+  //INVAERS MOVEMENT WHAT ARE NOT MOVING DOWN
   button.addEventListener('click',() => {
 
     invaders.forEach((invader)=> {
@@ -33,14 +36,15 @@ function setupGame(){
   
       setInterval(() => {
         if (alienDirection === 'right') {
-          invaders.forEach(invader => {
-            
-          })
+          
           if (rightWall.includes(invader)) {
+           
             cells[invader].classList.remove('invader')
             invader += cellsXcells
             cells[invader].classList.add('invader')
             alienDirection = 'left' 
+            
+            
           } else {
             cells[invader].classList.remove('invader')
             invader += invaderMove
@@ -63,7 +67,61 @@ function setupGame(){
     })
   })
 
+  cells[ship].classList.add('ship')
+  //SHIP CODE
+  function shoot(){
+    
+    // shoots = ship - cellsXcells
+    // shoots = shoots - cellsXccells
 
+    setInterval(() => {
+      if (shoots === 0) {
+        shoots = ship - cellsXcells
+        cells[shoots].classList.add('shoot')  
+      } else {
+        cells[shoots].classList.remove('shoot')
+        shoots = shoots - cellsXcells
+        cells[shoots].classList.add('shoot')  
+      }
+      // if (cells.contains('invader') && cells.contains('shoot')){
+      //   cells[shoots].classList.remove('shoot')
+      //   cells[invaders].classList.remove('invader')
+      // }
+    }, 500)
+  }
+
+
+  document.addEventListener('keydown', (event) => {
+    // console.log(event)
+    if (event.key === 'ArrowRight') {
+      if (ship === cells.length - 1) {
+        return
+      }
+      cells[ship].classList.remove('ship')
+      ship += 1
+      cells[ship].classList.add('ship')
+    } else if (event.key === 'ArrowLeft') {
+      if (ship === 380) {
+        return
+      }
+      cells[ship].classList.remove('ship')
+      ship -= 1
+      cells[ship].classList.add('ship')
+
+    } else if (event.code === 'Space'){
+      shoot()
+    }
+      
+  })
+
+
+  //COLISION
+
+  if (shoots === invaders) {
+    console.log('hello evryone')
+    cells[shoots].classList.remove('shoot')
+    cells[invaders].classList.remove('invader')
+  }
 }
 
 

@@ -27,5 +27,28 @@ body {
 }
 
 .invader{
-  background-color: red;
+  /* background-color: red; */
+  background: url('https://api.iconify.design/whh:alienship.svg') no-repeat center center / contain;
+}
+
+.ship{
+  /* background-color: royalblue; */
+  background: url('https://api.iconify.design/si-glyph:space-ship.svg') no-repeat center center / contain;
+}
+
+.shoot{
+  /* background-color: seagreen; */
+
+  background-image: url('missile2.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  
+
+}
+
+.rightWall {
+
+}
+.leftWall {
+
 }

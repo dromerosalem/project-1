@@ -53,24 +53,24 @@ function setupGame(){
             invaders[i] += invaderMove
             cells[invaders[i]].classList.add('invader')
           }
-        } //else if (alienDirection === 'left') {
-        //   if (leftWall.includes(invaders[i])) {
-        //     for (let i = 0; i < invaders.length; i++) {
-        //       cells[invaders[i]].classList.remove('invader')
+        } else if (alienDirection === 'left') {
+          if (leftWall.includes(invaders[i])) {
+            for (let i = 0; i < invaders.length; i++) {
+              cells[invaders[i]].classList.remove('invader')
               
-        //     }
-        //     for (let i = 0; i < invaders.length; i++) {
-        //       invaders[i] += cellsXcells 
-        //       cells[invaders[i]].classList.add('invader')
-        //     }
+            }
+            for (let i = 0; i < invaders.length; i++) {
+              invaders[i] += cellsXcells 
+              cells[invaders[i]].classList.add('invader')
+            }
             
-        //     alienDirection = 'right' 
-        //   } else {
-        //     cells[invaders[i]].classList.remove('invader')
-        //     invaders[i] -= invaderMove
-        //     cells[invaders[i]].classList.add('invader')
-        //   }
-        // } 
+            alienDirection = 'right' 
+          } else {
+            cells[invaders[i]].classList.remove('invader')
+            invaders[i] -= invaderMove
+            cells[invaders[i]].classList.add('invader')
+          }
+        } 
       }
       // cells[invader].classList.add('invader')    
   
@@ -84,10 +84,24 @@ function setupGame(){
     
     // shoots = ship - cellsXcells
     // shoots = shoots - cellsXccells
-    const shootMove = true
+    let shootMove = true
 
-    setInterval(() => {
-      // if (shootMove === true)
+    const shootsMovement = setInterval(() => {
+      if (shootMove === true){
+        invaders.forEach(invader => {
+          if (invader === shoots) {
+            
+            clearInterval(shootsMovement)
+            shootMove = false
+            invaders.splice( invaders.indexOf(invader), 1 )
+            console.log(invaders)
+            cells[shoots].classList.remove('shoot')
+            console.log('hello evryone')
+            cells[invader].classList.remove('invader')
+                  
+          }
+        })
+       
         if (shoots === 0) {
           shoots = ship - cellsXcells
           cells[shoots].classList.add('shoot')  
@@ -96,14 +110,8 @@ function setupGame(){
           shoots = shoots - cellsXcells
           cells[shoots].classList.add('shoot')  
         }
-
-      invaders.forEach(invader => {
-        if (invader === shoots) {
-          console.log('hello evryone')
-          cells[shoots].classList.remove('shoot')
-          cells[invader].classList.remove('invader')
-        }
-      })
+      } 
+     
       
       // if (cells.contains('invader') && cells.contains('shoot')){
       //   cells[shoots].classList.remove('shoot')

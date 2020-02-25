@@ -5,7 +5,7 @@ function setupGame(){
   const cellsXcells = 20
   let ship = 389
   let shoots = 0
-  const bombs = 0
+  // let bombs = 0
   const totalGrid = cellsXcells * cellsXcells
   const grid = document.querySelector('.grid')
   const cells = []
@@ -76,27 +76,35 @@ function setupGame(){
       // cells[invader].classList.add('invader')    
   
     }, 500)
-  })
-  // setInterval(() => {
+
     
-  //   // for (let i = 0; i < invaders.length; i++) {
-  //   let invaderFront = invaders.slice(-4)
-  //   let nuke = (Math.floor(Math.random() * invaderFront.length))
-
-  //   // console.log(invaderFront)
-  //   // console.log(nuke)
+    
+    const generateBomb = setInterval(() => { 
+      let bomb = 0
+      const invaderFront = invaders.slice(-4)
+      const nuke = (Math.floor(Math.random() * invaderFront.length))
+      bomb = invaderFront[nuke] += cellsXcells
       
-  //   // if (bombs === 0){
-  //   bombs = invaderFront[nuke] + cellsXcells
-  //   cells[bombs].classList.add('bomb')
-  //   // } else { 
-  //   //   cells[bombs].classList.remove('bomb')
-  //   //   bombs = bombs + cellsXcells
-  //   //   cells[bombs].classList.add('bombs')
-  //   // }
+      
+      const dropBombInterval = setInterval(() => {
+        cells[bomb].classList.remove('bomb')
+        bomb += cellsXcells
+        cells[bomb].classList.add('bomb')
+        
+      }, 200)
+      // bombs = invaderFront[nuke] + cellsXcells
+      // cells[bombs].classList.add('bomb')
+      // bombs += cellsXcells
+      // cells[bombs].classList.remove('bomb')
 
-  //   // }
-  // }, 2000)
+      // cells[invaderFront[nuke]].classList.remove('bomb')
+      // cells[invaderFront[nuke]].classList.add('bomb')
+      
+      
+    }, 2000)
+    
+  })
+
   
 
   cells[ship].classList.add('ship')
@@ -143,7 +151,7 @@ function setupGame(){
       // })
        
       // if (shoots === 0) {
-      // shoots = ship - cellsXcells
+      // shoots = ship - cellsXcells    
       // cells[shoots].classList.add('shoot')  
       // } else  {
       //   cells[shoots].classList.remove('shoot')

@@ -5,6 +5,7 @@ function setupGame(){
   const cellsXcells = 20
   let ship = 389
   let shoots = 0
+  const bombs = 0
   const totalGrid = cellsXcells * cellsXcells
   const grid = document.querySelector('.grid')
   const cells = []
@@ -53,30 +54,50 @@ function setupGame(){
             invaders[i] += invaderMove
             cells[invaders[i]].classList.add('invader')
           }
-        } else if (alienDirection === 'left') {
-          if (leftWall.includes(invaders[i])) {
-            for (let i = 0; i < invaders.length; i++) {
-              cells[invaders[i]].classList.remove('invader')
+        } //else if (alienDirection === 'left') {
+        //   if (leftWall.includes(invaders[i])) {
+        //     for (let i = 0; i < invaders.length; i++) {
+        //       cells[invaders[i]].classList.remove('invader')
               
-            }
-            for (let i = 0; i < invaders.length; i++) {
-              invaders[i] += cellsXcells 
-              cells[invaders[i]].classList.add('invader')
-            }
+        //     }
+        //     for (let i = 0; i < invaders.length; i++) {
+        //       invaders[i] += cellsXcells 
+        //       cells[invaders[i]].classList.add('invader')
+        //     }
             
-            alienDirection = 'right' 
-          } else {
-            cells[invaders[i]].classList.remove('invader')
-            invaders[i] -= invaderMove
-            cells[invaders[i]].classList.add('invader')
-          }
-        } 
+        //     alienDirection = 'right' 
+        //   } else {
+        //     cells[invaders[i]].classList.remove('invader')
+        //     invaders[i] -= invaderMove
+        //     cells[invaders[i]].classList.add('invader')
+        //   }
+        // } 
       }
       // cells[invader].classList.add('invader')    
   
     }, 500)
   })
+  // setInterval(() => {
+    
+  //   // for (let i = 0; i < invaders.length; i++) {
+  //   let invaderFront = invaders.slice(-4)
+  //   let nuke = (Math.floor(Math.random() * invaderFront.length))
 
+  //   // console.log(invaderFront)
+  //   // console.log(nuke)
+      
+  //   // if (bombs === 0){
+  //   bombs = invaderFront[nuke] + cellsXcells
+  //   cells[bombs].classList.add('bomb')
+  //   // } else { 
+  //   //   cells[bombs].classList.remove('bomb')
+  //   //   bombs = bombs + cellsXcells
+  //   //   cells[bombs].classList.add('bombs')
+  //   // }
+
+  //   // }
+  // }, 2000)
+  
 
   cells[ship].classList.add('ship')
   //SHIP CODE
@@ -84,33 +105,52 @@ function setupGame(){
     
     // shoots = ship - cellsXcells
     // shoots = shoots - cellsXccells
-    let shootMove = true
+    
+    shoots = ship - cellsXcells
+    cells[shoots].classList.add('shoot')  
 
+    // 
+  
     const shootsMovement = setInterval(() => {
-      if (shootMove === true){
-        invaders.forEach(invader => {
-          if (invader === shoots) {
+
+      console.log(shoots)
+      // if (shootMove === true){
+      //   invaders.forEach(invader => {
+      //     if (invader === shoots) {
+      cells[shoots].classList.remove('shoot')
+      shoots -= 20
+      cells[shoots].classList.add('shoot')  
+
+      if (cells[shoots].classList.contains('invader') === true) {    
+        //  const elem = invaders.length
+        invaders.splice(invaders.indexOf(cells[shoots]))
+        console.log(invaders)    
+        cells[shoots].classList.remove('invader')
+        cells[shoots].classList.remove('shoot')
+        clearInterval(shootsMovement)
+      }
+    
             
-            clearInterval(shootsMovement)
-            shootMove = false
-            invaders.splice( invaders.indexOf(invader), 1 )
-            console.log(invaders)
-            cells[shoots].classList.remove('shoot')
-            console.log('hello evryone')
-            cells[invader].classList.remove('invader')
+      // clearInterval(shootsMovement)
+      // shootMove = false
+      // invaders.splice( invaders.indexOf(invader), 1 )
+      // console.log(invaders)
+      // cells[invader].classList.remove('shoot')
+      // console.log('hello evryone')
+      // cells[invader].classList.remove('invader')
                   
-          }
-        })
+      // }
+      // })
        
-        if (shoots === 0) {
-          shoots = ship - cellsXcells
-          cells[shoots].classList.add('shoot')  
-        } else  {
-          cells[shoots].classList.remove('shoot')
-          shoots = shoots - cellsXcells
-          cells[shoots].classList.add('shoot')  
-        }
-      } 
+      // if (shoots === 0) {
+      // shoots = ship - cellsXcells
+      // cells[shoots].classList.add('shoot')  
+      // } else  {
+      //   cells[shoots].classList.remove('shoot')
+      //   shoots = shoots - cellsXcells
+      //   cells[shoots].classList.add('shoot')  
+      // }
+      // } 
      
       
       // if (cells.contains('invader') && cells.contains('shoot')){
@@ -119,6 +159,7 @@ function setupGame(){
       // }
     }, 500)
   }
+  
 
 
   document.addEventListener('keydown', (event) => {
@@ -143,6 +184,8 @@ function setupGame(){
     }
       
   })
+
+  
 
 
   

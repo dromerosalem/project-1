@@ -37,13 +37,20 @@ body {
 }
 
 .shoot{
-  /* background-color: seagreen; */
+  background-color: seagreen;
 
   background-image: url('missile2.png');
   background-size: contain;
   background-repeat: no-repeat;
   
 
+}
+
+.bomb{
+  background-color: red;
+  background-image: url('missile1.png');
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .rightWall {

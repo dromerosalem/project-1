@@ -14,9 +14,6 @@ function setupGame() {
   let alienDirection = 'right'
   let life = 3
   const invaderMove = 1
-  let invadersMovement
-  let generateBomb
-  let dropBombInterval
 
   const getLifes = Array.from(document.querySelectorAll('.cellLifes'))
 
@@ -60,7 +57,7 @@ function setupGame() {
 
       //invaders movement
 
-      invadersMovement = setInterval(() => {
+      const invadersMovement = setInterval(() => {
 
         for (let i = 0; i < invaders.length; i++) {
           if (invaders[i] > 380 ){
@@ -107,14 +104,14 @@ function setupGame() {
 
 
       //bombs generate
-      generateBomb = setInterval(() => {
+      const generateBomb = setInterval(() => {
         let bomb = 0
         const invaderFront = invaders.slice(-4)
         const nuke = (Math.floor(Math.random() * invaderFront.length))
         bomb = invaderFront[nuke] += cellsXcells
 
 
-        dropBombInterval = setInterval(() => {
+        const dropBombInterval = setInterval(() => {
          
           if (bomb >= 380) {
             cells[bomb].classList.remove('bomb')
@@ -179,6 +176,7 @@ function setupGame() {
       })
     }
   })
+  const endGame = document.querySelector('.hidden')
   function shoot() {
     let shoots = 0
     // shoots = ship - cellsXcells
@@ -190,12 +188,15 @@ function setupGame() {
     // 
 
     const shootsMovement = setInterval(() => {
-      if (invaders.length === 0){
+      if (invaders.length === 11){
         clearInterval(shootsMovement)
-        clearInterval(invadersMovement)
-        clearInterval(generateBomb)
-        clearInterval(dropBombInterval)
-        alert('Lovely')
+        grid.style.display = 'none'
+
+        endGame.style.display = 'block'
+
+        // clearInterval(invadersMovement)
+        // clearInterval(generateBomb)
+        // clearInterval(dropBombInterval)
       } else if (shoots <= 19) {
         clearInterval(shootsMovement)
         cells[shoots].classList.remove('shoot')

@@ -2,6 +2,16 @@
   box-sizing: border-box;
 }
 
+
+main{
+  display: flex;
+  flex-direction: row;
+}
+
+article{
+  margin-right: 50px;
+}
+
 body {
   height: 100vh;
   display: flex;
@@ -20,12 +30,25 @@ body {
   flex-wrap: wrap;
 }
 
+.lifes{
+  display: flex;
+  flex-direction: row;
+  border: 1px solid grey;
+  width: 200px;
+  height: 50px;
+  flex-wrap: wrap;
+}
+
 .cell {
   width: 5%;
   height: 5%;
   border: 1px solid green;
 }
-
+.cellLifes {
+  width: 33.3333333%;
+  height: 50px;
+  border: 1px solid green;
+}
 .invader{
   /* background-color: red; */
   background: url('https://api.iconify.design/whh:alienship.svg') no-repeat center center / contain;
@@ -33,7 +56,7 @@ body {
 
 .ship{
   /* background-color: royalblue; */
-  background: url('https://api.iconify.design/si-glyph:space-ship.svg') no-repeat center center / contain;
+  background: url('hero.png') no-repeat center center / contain;
 }
 
 .shoot{

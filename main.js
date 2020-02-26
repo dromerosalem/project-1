@@ -32,14 +32,8 @@ function setupGame(){
 
   let start = true
 
- 
- 
-
-
   //INVAERS MOVEMENT WHAT ARE NOT MOVING DOWN
-  
-  
-    
+      
   button.addEventListener('click',() => {
     
     button.blur()
@@ -111,6 +105,13 @@ function setupGame(){
             cells[bomb].classList.add('bomb')
             console.log(cells[bomb])
             console.log(bomb)
+          }
+
+          if (ship === bomb){
+            cells[bomb].classList.remove('bomb')
+            cells[ship].classList.remove('ship')
+            ship = 389
+            cells[ship].classList.add('ship')
           }
         
         }, 200)

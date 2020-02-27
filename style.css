@@ -18,17 +18,19 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin: 0
+  margin: 0;
+  background-image: url('space.jpg');
 }
 
 .grid {
   display: flex;
   flex-direction: row;
-  border: 1px solid grey;
+  border: 1px solid greenyellow;
   width: 1000px;
   height: 700px;
   flex-wrap: wrap;
-  /* background-image: url('wormhole.gif'); */
+  background-image: url('spaceEarth.jpg');
+  background-size: contain;
 }
 
 .lifes{
@@ -43,7 +45,7 @@ body {
 .cell {
   width: 5%;
   height: 5%;
-  border: 1px solid green;
+  /* border: 1px solid green; */
 }
 .cellLifes {
   width: 33.3333333%;
@@ -52,7 +54,12 @@ body {
 }
 .invader{
   /* background-color: red; */
-  background: url('https://api.iconify.design/whh:alienship.svg') no-repeat center center / contain;
+  /* background: url('https://api.iconify.design/whh:alienship.svg') no-repeat center center / contain; */
+  background-image: url('ufo.png');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  
 }
 
 .ship{
@@ -61,9 +68,9 @@ body {
 }
 
 .shoot{
-  background-color: seagreen;
+  /* background-color: seagreen; */
 
-  background-image: url('missile2.png');
+  background-image: url('laser.png');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -72,8 +79,8 @@ body {
 }
 
 .bomb{
-  background-color: red;
-  background-image: url('missile1.png');
+  /* background-color: red; */
+  background-image: url('missile2.png');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;

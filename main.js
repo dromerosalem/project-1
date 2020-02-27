@@ -1,7 +1,7 @@
 
 function setupGame() {
 
-
+  const audio = document.querySelector('#audio') 
   const cellsXcells = 20
   let ship = 389
   const totalGrid = cellsXcells * cellsXcells
@@ -16,7 +16,9 @@ function setupGame() {
   const invaderMove = 1
 
   const getLifes = Array.from(document.querySelectorAll('.cellLifes'))
-
+  let invadersMovement
+  let generateBomb
+  // let dropBombInterval
 
 
 
@@ -35,7 +37,7 @@ function setupGame() {
   for (let i = 0; i < totalGrid; i++) {
 
     const cell = document.createElement('div')
-    cell.innerHTML = i
+    // cell.innerHTML = i
     cell.classList.add('cell')
     grid.appendChild(cell)
     cells.push(cell)
@@ -57,7 +59,8 @@ function setupGame() {
 
       //invaders movement
 
-      const invadersMovement = setInterval(() => {
+      invadersMovement = setInterval(() => {
+
 
         for (let i = 0; i < invaders.length; i++) {
           if (invaders[i] > 380 ){
@@ -104,7 +107,7 @@ function setupGame() {
 
 
       //bombs generate
-      const generateBomb = setInterval(() => {
+      generateBomb = setInterval(() => {
         let bomb = 0
         const invaderFront = invaders.slice(-4)
         const nuke = (Math.floor(Math.random() * invaderFront.length))
@@ -131,7 +134,8 @@ function setupGame() {
             ship = 389
             cells[ship].classList.add('ship')
             life -= 1
-            
+            audio.src = 'explosion.mp3'
+            audio.play()
             getLifes[life].classList.remove('ship')
             if (life === 0) {
               alert('GAME OVER')
@@ -171,6 +175,8 @@ function setupGame() {
 
         } else if (event.code === 'Space') {
           shoot()
+          audio.src = 'laser.mp3'
+          audio.play()
         }
 
       })
@@ -188,14 +194,15 @@ function setupGame() {
     // 
 
     const shootsMovement = setInterval(() => {
-      if (invaders.length === 11){
+      if (invaders.length === 0){
         clearInterval(shootsMovement)
         grid.style.display = 'none'
+        
 
         endGame.style.display = 'block'
 
-        // clearInterval(invadersMovement)
-        // clearInterval(generateBomb)
+        clearInterval(invadersMovement)
+        clearInterval(generateBomb)
         // clearInterval(dropBombInterval)
       } else if (shoots <= 19) {
         clearInterval(shootsMovement)
@@ -210,6 +217,8 @@ function setupGame() {
           //  const elem = invaders.length
           invaders.splice(invaders.indexOf(cells[shoots]))
           console.log(invaders)
+          audio.src = 'desintegration.mp3'
+          audio.play()
           cells[shoots].classList.remove('invader')
           cells[shoots].classList.remove('shoot')
           clearInterval(shootsMovement)

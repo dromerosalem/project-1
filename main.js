@@ -18,20 +18,11 @@ function setupGame() {
   const getLifes = Array.from(document.querySelectorAll('.cellLifes'))
   let invadersMovement
   let generateBomb
-  // let dropBombInterval
+  // const playAgain = document.querySelector('#playagain')
 
-
-
-  // for (let i = 0; i < totalLifes.length; i++) {
-  //   lifeCell = document.createElement('div')
-  //   lifeCell.classList.add('cellLifes')
-  //   lifeCell.classList.add('ship')
-  //   lifes.appendChild(lifeCell)
-  // }
-
-
-  // lifes.innerHTML = `${life}`
-
+  // playAgain.addEventListener('click', () =>{
+    
+  // })
 
 
   for (let i = 0; i < totalGrid; i++) {

@@ -55,7 +55,7 @@ body {
 .invader{
   /* background-color: red; */
   /* background: url('https://api.iconify.design/whh:alienship.svg') no-repeat center center / contain; */
-  background-image: url('ufo.png');
+  background-image: url('enemy.png');
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
@@ -96,7 +96,7 @@ body {
 .hidden {
   display: none;
   width: 500px;
-  height: 700px;
+  height: 1000px;
 }
 
 .gameOver{
@@ -147,4 +147,9 @@ p{
   padding: 50px;
   margin-left: 200px;
   margin-right: 200px;
+}
+
+#playAgain{
+  margin-left: 130px;
+  margin-top: 50px;
 }

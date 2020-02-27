@@ -14,7 +14,7 @@ function setupGame() {
   let alienDirection = 'right'
   let life = 3
   const invaderMove = 1
-
+  const miniGrid = document.querySelector('.miniGrid')
   const getLifes = Array.from(document.querySelectorAll('.cellLifes'))
   let invadersMovement
   let generateBomb
@@ -64,9 +64,14 @@ function setupGame() {
 
         for (let i = 0; i < invaders.length; i++) {
           if (invaders[i] > 380 ){
-            alert('GAME OVER')
+    
             clearInterval(invadersMovement)
             clearInterval(generateBomb)
+            grid.style.display = 'none'
+            miniGrid.style.display = 'none'
+            audio.src = 'gameOver.mp3'
+            audio.play()
+            gameOver.style.display = 'block'
           }
           if (alienDirection === 'right') {
 
@@ -105,7 +110,7 @@ function setupGame() {
 
       }, 500)
 
-
+      const gameOver = document.querySelector('.gameOver')
       //bombs generate
       generateBomb = setInterval(() => {
         let bomb = 0
@@ -138,9 +143,14 @@ function setupGame() {
             audio.play()
             getLifes[life].classList.remove('ship')
             if (life === 0) {
-              alert('GAME OVER')
+          
               clearInterval(dropBombInterval)
               clearInterval(generateBomb)
+              grid.style.display = 'none'
+              miniGrid.style.display = 'none'
+              audio.src = 'gameOver.mp3'
+              audio.play()
+              gameOver.style.display = 'block'
             }
             
           }
@@ -194,11 +204,12 @@ function setupGame() {
     // 
 
     const shootsMovement = setInterval(() => {
-      if (invaders.length === 0){
+      if (invaders.length === 11){
         clearInterval(shootsMovement)
         grid.style.display = 'none'
-        
-
+        miniGrid.style.display = 'none'
+        audio.src = 'victory.mp3'
+        audio.play()
         endGame.style.display = 'block'
 
         clearInterval(invadersMovement)

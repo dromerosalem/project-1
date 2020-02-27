@@ -95,4 +95,19 @@ body {
 
 .hidden {
   display: none;
+  width: 500px;
+  height: 700px;
+}
+
+.gameOver{
+  display: none;
+  width: 1000px;
+  height: 890px;
+}
+
+h1{
+  font-family: 'Londrina Shadow', sans-serif;
+  font-size: 80px;
+  color: aliceblue;
+  text-align: center;
 }

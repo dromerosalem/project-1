@@ -45,12 +45,56 @@ function setupGame() {
   }
 
   let start = true
+  const music = document.querySelector('#music')
+  
+  const startScreen = document.querySelector('.startScreen')
+  const letsGo = document.querySelector('#letsGo')
+  const counter = document.querySelector('.display')
+  let timer = 11
+  grid.style.display = 'none'
+  miniGrid.style.display = 'none'
+  counter.style.display = 'none'
 
+  letsGo.addEventListener('click', () => {    
+    audio.src = 'countdown.mp3'
+    audio.play()
+    const IntervalID = setInterval(() => {
+      if ( timer === 0){
+        clearInterval(IntervalID)
+        
+        grid.style.display = 'flex'
+        miniGrid.style.display = 'block'
+        startScreen.style.display = 'none'
+        counter.style.display = 'none'
+      
+      } else {
+        startScreen.style.display = 'none'
+        counter.style.display = 'block'
+        timer -= 1
+        counter.innerHTML = timer
+         
+      }
+    }, 1000)
+    
+  })
+
+
+    
+  
+
+
+  
   //INVAERS MOVEMENT WHAT ARE NOT MOVING DOWN
 
   button.addEventListener('click', () => {
+    
 
-    button.blur()
+  
+    music.src = 'attack.mp3'
+    music.play()
+    button.blur()  
+    
+    
 
     if (start === true) {
       start = false
@@ -71,6 +115,7 @@ function setupGame() {
             miniGrid.style.display = 'none'
             audio.src = 'gameOver.mp3'
             audio.play()
+            music.pause()
             gameOver.style.display = 'block'
           }
           if (alienDirection === 'right') {
@@ -108,7 +153,7 @@ function setupGame() {
         }
         // cells[invader].classList.add('invader')    
 
-      }, 500)
+      }, 300)
 
       const gameOver = document.querySelector('.gameOver')
       //bombs generate
@@ -117,7 +162,8 @@ function setupGame() {
         const invaderFront = invaders.slice(-4)
         const nuke = (Math.floor(Math.random() * invaderFront.length))
         bomb = invaderFront[nuke] += cellsXcells
-
+        audio.src = 'rocket.mp3'
+        audio.play()
 
         const dropBombInterval = setInterval(() => {
          
@@ -148,6 +194,7 @@ function setupGame() {
               clearInterval(generateBomb)
               grid.style.display = 'none'
               miniGrid.style.display = 'none'
+              music.pause()
               audio.src = 'gameOver.mp3'
               audio.play()
               gameOver.style.display = 'block'
@@ -204,11 +251,12 @@ function setupGame() {
     // 
 
     const shootsMovement = setInterval(() => {
-      if (invaders.length === 11){
+      if (invaders.length === 0){
         clearInterval(shootsMovement)
         grid.style.display = 'none'
         miniGrid.style.display = 'none'
         audio.src = 'victory.mp3'
+        music.pause()
         audio.play()
         endGame.style.display = 'block'
 

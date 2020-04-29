@@ -8,3 +8,4 @@ Let's start out with something fun - **a game!**
 As part of the softaware engineering bootcamp program the first project is to build a game from the scratch with the techlogies we have learned in the previous 3 weeks of intensive **JavaScript** so we could chalenge ourselfs with our adquired skills.
 
  
+this is a test

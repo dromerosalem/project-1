@@ -57,6 +57,156 @@ function setupGame() {
         miniGrid.style.display = 'block'
         startScreen.style.display = 'none'
         counter.style.display = 'none'
+
+  
+        music.src = 'assets/attack.mp3'
+        music.play()
+        button.blur()  
+    
+    
+
+        if (start === true) {
+          start = false
+
+
+
+          //invaders movement
+
+          invadersMovement = setInterval(() => {
+
+
+            for (let i = 0; i < invaders.length; i++) {
+              if (invaders[i] > 380 ){
+    
+                clearInterval(invadersMovement)
+                clearInterval(generateBomb)
+                grid.style.display = 'none'
+                miniGrid.style.display = 'none'
+                audio.src = 'assets/gameOver.mp3'
+                audio.play()
+                music.pause()
+                gameOver.style.display = 'block'
+              }
+              if (alienDirection === 'right') {
+
+                if (rightWall.includes(invaders[i])) {
+                  for (let i = invaders.length - 1; i >= 0; i--) {
+                    cells[invaders[i]].classList.remove('invader')
+                    invaders[i] += cellsXcells
+                    cells[invaders[i]].classList.add('invader')
+                  }
+                  return alienDirection = 'left'
+                } else {
+                  cells[invaders[i]].classList.remove('invader')
+                  invaders[i] += invaderMove
+                  cells[invaders[i]].classList.add('invader')
+                }
+              } else if (alienDirection === 'left') {
+                if (leftWall.includes(invaders[i])) {
+                  for (let i = 0; i < invaders.length; i++) {
+                    cells[invaders[i]].classList.remove('invader')
+
+                  }
+                  for (let i = 0; i < invaders.length; i++) {
+                    invaders[i] += cellsXcells
+                    cells[invaders[i]].classList.add('invader')
+                  }
+
+                  alienDirection = 'right'
+                } else {
+                  cells[invaders[i]].classList.remove('invader')
+                  invaders[i] -= invaderMove
+                  cells[invaders[i]].classList.add('invader')
+                }
+              } 
+            }
+            // cells[invader].classList.add('invader')    
+
+          }, 300)
+
+          const gameOver = document.querySelector('.gameOver')
+          //bombs generate
+          generateBomb = setInterval(() => {
+            let bomb = 0
+            const invaderFront = invaders.slice(-4)
+            const nuke = (Math.floor(Math.random() * invaderFront.length))
+            bomb = invaderFront[nuke] += cellsXcells
+            audio.src = 'assets/rocket.mp3'
+            audio.play()
+
+            const dropBombInterval = setInterval(() => {
+         
+              if (bomb >= 380) {
+                cells[bomb].classList.remove('bomb')
+                clearInterval(dropBombInterval)
+
+              } else {
+                cells[bomb].classList.remove('bomb')
+                bomb += cellsXcells
+                cells[bomb].classList.add('bomb')
+                // console.log(cells[bomb])
+                // console.log(bomb)
+              }
+
+              if (ship === bomb) {
+                cells[bomb].classList.remove('bomb')
+                cells[ship].classList.remove('ship')
+                ship = 389
+                cells[ship].classList.add('ship')
+                life -= 1
+                audio.src = 'assets/explosion.mp3'
+                audio.play()
+                getLifes[life].classList.remove('ship')
+                if (life === 0) {
+          
+                  clearInterval(dropBombInterval)
+                  clearInterval(generateBomb)
+                  grid.style.display = 'none'
+                  miniGrid.style.display = 'none'
+                  music.pause()
+                  audio.src = 'assets/gameOver.mp3'
+                  audio.play()
+                  gameOver.style.display = 'block'
+                }
+            
+              }
+
+            }, 200)
+        
+
+          }, 1000)
+          cells[ship].classList.add('ship')
+
+          //SHIP CODE
+
+      
+
+
+          document.addEventListener('keydown', (event) => {
+            // console.log(event)
+            if (event.key === 'ArrowRight') {
+              if (ship === cells.length - 1) {
+                return
+              }
+              cells[ship].classList.remove('ship')
+              ship += 1
+              cells[ship].classList.add('ship')
+            } else if (event.key === 'ArrowLeft') {
+              if (ship === 380) {
+                return
+              }
+              cells[ship].classList.remove('ship')
+              ship -= 1
+              cells[ship].classList.add('ship')
+
+            } else if (event.code === 'Space') {
+              shoot()
+              audio.src = 'assets/laser.mp3'
+              audio.play()
+            }
+
+          })
+        }
       
       } else {
         startScreen.style.display = 'none'
@@ -77,159 +227,10 @@ function setupGame() {
   
   //INVAERS MOVEMENT WHAT ARE NOT MOVING DOWN
 
-  button.addEventListener('click', () => {
+  // button.addEventListener('click', () => {
     
 
-  
-    music.src = 'assets/attack.mp3'
-    music.play()
-    button.blur()  
-    
-    
-
-    if (start === true) {
-      start = false
-
-
-
-      //invaders movement
-
-      invadersMovement = setInterval(() => {
-
-
-        for (let i = 0; i < invaders.length; i++) {
-          if (invaders[i] > 380 ){
-    
-            clearInterval(invadersMovement)
-            clearInterval(generateBomb)
-            grid.style.display = 'none'
-            miniGrid.style.display = 'none'
-            audio.src = 'assets/gameOver.mp3'
-            audio.play()
-            music.pause()
-            gameOver.style.display = 'block'
-          }
-          if (alienDirection === 'right') {
-
-            if (rightWall.includes(invaders[i])) {
-              for (let i = invaders.length - 1; i >= 0; i--) {
-                cells[invaders[i]].classList.remove('invader')
-                invaders[i] += cellsXcells
-                cells[invaders[i]].classList.add('invader')
-              }
-              return alienDirection = 'left'
-            } else {
-              cells[invaders[i]].classList.remove('invader')
-              invaders[i] += invaderMove
-              cells[invaders[i]].classList.add('invader')
-            }
-          } else if (alienDirection === 'left') {
-            if (leftWall.includes(invaders[i])) {
-              for (let i = 0; i < invaders.length; i++) {
-                cells[invaders[i]].classList.remove('invader')
-
-              }
-              for (let i = 0; i < invaders.length; i++) {
-                invaders[i] += cellsXcells
-                cells[invaders[i]].classList.add('invader')
-              }
-
-              alienDirection = 'right'
-            } else {
-              cells[invaders[i]].classList.remove('invader')
-              invaders[i] -= invaderMove
-              cells[invaders[i]].classList.add('invader')
-            }
-          } 
-        }
-        // cells[invader].classList.add('invader')    
-
-      }, 300)
-
-      const gameOver = document.querySelector('.gameOver')
-      //bombs generate
-      generateBomb = setInterval(() => {
-        let bomb = 0
-        const invaderFront = invaders.slice(-4)
-        const nuke = (Math.floor(Math.random() * invaderFront.length))
-        bomb = invaderFront[nuke] += cellsXcells
-        audio.src = 'assets/rocket.mp3'
-        audio.play()
-
-        const dropBombInterval = setInterval(() => {
-         
-          if (bomb >= 380) {
-            cells[bomb].classList.remove('bomb')
-            clearInterval(dropBombInterval)
-
-          } else {
-            cells[bomb].classList.remove('bomb')
-            bomb += cellsXcells
-            cells[bomb].classList.add('bomb')
-            // console.log(cells[bomb])
-            // console.log(bomb)
-          }
-
-          if (ship === bomb) {
-            cells[bomb].classList.remove('bomb')
-            cells[ship].classList.remove('ship')
-            ship = 389
-            cells[ship].classList.add('ship')
-            life -= 1
-            audio.src = 'assets/explosion.mp3'
-            audio.play()
-            getLifes[life].classList.remove('ship')
-            if (life === 0) {
-          
-              clearInterval(dropBombInterval)
-              clearInterval(generateBomb)
-              grid.style.display = 'none'
-              miniGrid.style.display = 'none'
-              music.pause()
-              audio.src = 'assets/gameOver.mp3'
-              audio.play()
-              gameOver.style.display = 'block'
-            }
-            
-          }
-
-        }, 200)
-        
-
-      }, 1000)
-      cells[ship].classList.add('ship')
-
-      //SHIP CODE
-
-      
-
-
-      document.addEventListener('keydown', (event) => {
-        // console.log(event)
-        if (event.key === 'ArrowRight') {
-          if (ship === cells.length - 1) {
-            return
-          }
-          cells[ship].classList.remove('ship')
-          ship += 1
-          cells[ship].classList.add('ship')
-        } else if (event.key === 'ArrowLeft') {
-          if (ship === 380) {
-            return
-          }
-          cells[ship].classList.remove('ship')
-          ship -= 1
-          cells[ship].classList.add('ship')
-
-        } else if (event.code === 'Space') {
-          shoot()
-          audio.src = 'assets/laser.mp3'
-          audio.play()
-        }
-
-      })
-    }
-  })
+  // })
   const endGame = document.querySelector('.hidden')
   function shoot() {
     let shoots = 0
@@ -278,9 +279,6 @@ function setupGame() {
 
     }, 200)
   }
-
-  
-
 
 }
 

@@ -68,8 +68,6 @@ function setupGame() {
         if (start === true) {
           start = false
 
-
-
           //invaders movement
 
           invadersMovement = setInterval(() => {
@@ -225,7 +223,7 @@ function setupGame() {
 
 
   
-  //INVAERS MOVEMENT WHAT ARE NOT MOVING DOWN
+  //INVADERS MOVEMENT WHAT ARE NOT MOVING DOWN
 
   // button.addEventListener('click', () => {
     
@@ -236,11 +234,10 @@ function setupGame() {
     let shoots = 0
     // shoots = ship - cellsXcells
     // shoots = shoots - cellsXccells
-
     shoots = ship - cellsXcells
     cells[shoots].classList.add('shoot')
 
-    // 
+    
 
     const shootsMovement = setInterval(() => {
       if (invaders.length === 0){

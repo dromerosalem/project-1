@@ -124,7 +124,7 @@ They start keep moving to the right until find the right wall when they jump 20 
   const leftWall = [20, 40, 60, 80, 100, 120, 140, 160, 180, 200, 220, 240, 260, 280, 300, 320, 340, 360, 380]
 ```
 
-### Invaders Boobms
+### Invaders Boombs
 
 Invaders boobms are fired every 1000 milliseconds using a setInterval. The firing position is randomly determined using Math.random based on the position invader position. The .slice(-4) method used here means that as the number of invaders in the array decreases, the number of aliens firing reduces - rather than having enemy lasers originating from empty space.
 

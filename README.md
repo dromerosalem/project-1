@@ -294,6 +294,14 @@ The movement is done by adding and removing a class from the cells and reaering 
 - Mobile friendly is one of the goals I would like to implement to the game as most of thr users nowdays are navigating trough mobile web.
 
 
+## Lessons Learned
+
+- As the really first project with JavaScript I have done. The lessons learned during the project was the whole project as it was the first time I had to make the material learned at class for an actual project. 
+
+- From the most relevant things I can mention I can start with the grid as it was somehting I was not expecting to build a grid with JavaScript instead of building the grid with HTML and CSS this way was much more efficient as for exampple I I would like to build a grid what will contain 1000 cells I dont have to draw 1000 'div' tags myself but doing it trough JavaScript.
+
+- Event Listeners for the movento of the invaders and the ship. It was super funny to have the experience of bulding myself an interactive game where I made the functionalities for the movements. When working specially for the Ship movement and shoot with spacebar was something new and that make me feel great of how I see myself progressing during the course. 
+
 
 
 ### [Play the game Now!](https://dromerosalem.github.io/project-1/)

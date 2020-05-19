@@ -5,14 +5,15 @@
 
 Let's start out with something fun - **a game!**
 
-As part of the software engineering bootcamp program the first project is to build a game from the scratch with the techlogies we have learned in the previous 3 weeks of intensive **JavaScript** so we could chalenge ourselfs with our adquired skills.
+As part of the software engineering bootcamp program, the first project is to build a game from the scratch with the technologies we have learned in the previous 3 weeks of intensive **JavaScript**, so we could challenge ourselves with our acquired skills.
 
-I always was facinated with the space so from the selection of games to choose, I deceided to go for the classic arcade game Space Invaders and make an adaptation of it with sounds effects taken from the movies Star Wars and inspared from Idepennce Day movie for the styling the final product I got is somehting that I ca be proud of.
+I always was fascinated with the space so from the selection of games to choose, I decided to go for the classic arcade game Space Invaders and make an adaptation of it with sounds effects taken from the movies Star Wars and inspired from Independence Day movie for the styling the final product I got is something that I can be proud of.
 
- 
 You can play the game [here](https://dromerosalem.github.io/project-1/) 
 
-This game was later adapted and shared by a blogger with my permission, and went viral in Mexico in his facebook fan page with more than 4 million followers. You can check the adaptation [here](https://coronagame.net/)   
+This game was later adapted and shared by a blogger with my permission, and went viral in Mexico in his fakebook fan page with more than 4 million followers. You can check the adaptation [here](https://coronagame.net/)
+
+   
 
 
 ## The Brief 
@@ -124,9 +125,9 @@ They start keep moving to the right until find the right wall when they jump 20 
   const leftWall = [20, 40, 60, 80, 100, 120, 140, 160, 180, 200, 220, 240, 260, 280, 300, 320, 340, 360, 380]
 ```
 
-### Invaders Boombs
+### Invaders Bombs
 
-Invaders boobms are fired every 1000 milliseconds using a setInterval. The firing position is randomly determined using Math.random based on the position invader position. The .slice(-4) method used here means that as the number of invaders in the array decreases, the number of aliens firing reduces - rather than having enemy lasers originating from empty space.
+Invaders bombs are fired every 1000 milliseconds using a setInterval. The firing position is randomly determined using Math.random based on the position invader position. The .slice(-4) method used here means that as the number of invaders in the array decreases, the number of aliens firing reduces - rather than having enemy lasers originating from empty space.
 
 
 ```js
@@ -231,9 +232,9 @@ In order to take advantage of the same event listener the event to shoot the las
 
 ### The Player Shoot
 
-The player shoot was defined inside of a function called `shoot()` the shoot movements. Every time that the event listener is called by pressing the space bar a laser shoot will be generated that will keep moving up by 20 positions from the initial position from where the player was located at the moment of shooting. This movemtn is set by a `serInerval()` function that occurs every 200 milliseconds.
+The player shoot was defined inside of a function called `shoot()` the shoot movements. Every time that the event listener is called by pressing the space bar a laser shoot will be generated that will keep moving up by 20 positions from the initial position from where the player was located at the moment of shooting. This movement is set by a `serInerval()` function that occurs every 200 milliseconds.
 
-The movement is done by adding and removing a class from the cells and reaering 20 cells up, what is actually a -20, negative, movement.
+The movement is done by adding and removing a class from the cells and reappearing 20 cells up, what is actually a -20, negative, movement.
 
 
 ```js
@@ -281,27 +282,27 @@ The movement is done by adding and removing a class from the cells and reaering 
 
 
 ## Challenges
-- Beeing this project the really first JavaScript project I've ever done definitely was one of th most biggest challenge as there was a due date of one week to deliver trying to make all the functions fit in the proper place when unexpected bugs that I was not counting with were happening.
+- Being this project the very first JavaScript project I've ever done definitely was one of the most biggest challenge as there was a one-week due date to deliver trying to make all the functions fit in the proper place when unexpected bugs that I was not counting with were happening.
 
 
 ## Victories 
-- The invaders movement was a real victory due to the dificulty to make the response as expected, when the invaders started to move 20 positions down all together and then to the left was on of the most glorius moments of this project. 
+- The invaders movement was a real victory due to the difficulty to make the response as expected, when the invaders started to move 20 positions down all together and then to the left was on of the most glorius moments of this project. 
 
 ## Potential future features
 
-- An aditional level it will be one of the features to be added into this project, as all the invaders are killed the player will reapear into a new level where the invaders will move and shoot faster
+- An aditional level will be one of the features to be added into this project, as all the invaders are killed the player will reapear into a new level where the invaders will move and shoot faster.
 
-- Mobile friendly is one of the goals I would like to implement to the game as most of thr users nowdays are navigating trough mobile web.
+- Mobile friendly is one of the goals I would like to implement to the game, as most of the users nowadays are navigating through mobile web.
 
 
 ## Lessons Learned
 
-- As the really first project with JavaScript I have done. The lessons learned during the project was the whole project as it was the first time I had to make the material learned at class for an actual project. 
+- The very first project with JavaScript I have done, the lessons learned during the project were the whole project, as it was the first time I had to make the material learned at class for an actual project. 
 
-- From the most relevant things I can mention I can start with the grid as it was somehting I was not expecting to build a grid with JavaScript instead of building the grid with HTML and CSS this way was much more efficient as for exampple I I would like to build a grid what will contain 1000 cells I dont have to draw 1000 'div' tags myself but doing it trough JavaScript.
+- From the most relevant things I can mention I can start with the grid as it was something I was not expecting to build a grid with JavaScript instead of building the grid with HTML and CSS this way was much more efficient as for example I would like to build a grid what will contain 1000 cells I don’t have to draw 1000 'div' tags myself but doing it through JavaScript.
 
-- Event Listeners for the movento of the invaders and the ship. It was super funny to have the experience of bulding myself an interactive game where I made the functionalities for the movements. When working specially for the Ship movement and shoot with spacebar was something new and that make me feel great of how I see myself progressing during the course. 
-
+- Event Listeners for the movement of the invaders and the ship. It was super funny to have the experience of building myself an interactive game where I made the functionalities for the movements. When working specially for the Ship movement and shoot with spacebar was something new and that made me feel great of how I see myself progressing during the course. 
+ 
 
 
 ### [Play the game Now!](https://dromerosalem.github.io/project-1/)
